@@ -88,7 +88,7 @@
         org-startup-with-inline-images t
         org-image-actual-width 600
         org-preview-latex-default-process 'dvisvgm)
-  (plist-put org-format-latex-options :scale 2.5)
+  (plist-put org-format-latex-options :scale 2.2)
   (add-hook 'org-mode-hook #'org-fragtog-mode))
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
