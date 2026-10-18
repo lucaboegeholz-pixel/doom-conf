@@ -82,13 +82,15 @@
 ;; they are implemented.
 (setq doom-theme 'doom-gruvbox)
 (setq org-directory "~/notes/")
-
 (after! org
-  (setq org-startup-with-latex-preview t
+  (setq org-startup-with-latex-preview nil
         org-startup-with-inline-images t
-        org-image-actual-width 600
-        org-preview-latex-default-process 'dvisvgm)
-  (plist-put org-format-latex-options :scale 2.2)
-  (add-hook 'org-mode-hook #'org-fragtog-mode))
+        org-image-actual-width '(600)
+        org-preview-latex-default-process 'dvisvgm
+        org-highlight-latex-and-related nil
+        org-pretty-entities t
+        org-pretty-entities-include-sub-superscripts t
+        org-use-sub-superscripts '{})
+  (plist-put org-format-latex-options :scale 2.2))
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
