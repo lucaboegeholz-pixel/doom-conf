@@ -94,3 +94,6 @@
   (plist-put org-format-latex-options :scale 2.2))
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+(setq +dashboard-functions '(+dashboard-widget-banner +dashboard-widget-loaded))
+(custom-set-faces!
+  '(+dashboard-banner :foreground "#fabd2f"))
