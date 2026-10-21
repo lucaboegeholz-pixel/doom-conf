@@ -80,6 +80,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(setq cdlatex-math-modify-alist
+      '((?B "\\mathbb" nil t nil nil)))
 (setq doom-theme 'doom-gruvbox)
 (setq org-directory "~/notes/")
 (after! org
@@ -97,3 +99,29 @@
 (setq +dashboard-functions '(+dashboard-widget-banner +dashboard-widget-loaded))
 (custom-set-faces!
   '(+dashboard-banner :foreground "#fabd2f"))
+(after! org
+  (add-to-list 'org-entities-user
+               '("mp" "\\mp" t "&#8723;" "-+" "-+" "∓")))
+(after! org
+  (add-hook 'org-mode-hook #'org-cdlatex-mode))
+
+(defun my/ghostel-right ()
+  "Toggle a ghostel terminal in a window on the right."
+  (interactive)
+  (cond
+   ;; in the terminal → close its window
+   ((derived-mode-p 'ghostel-mode)
+    (delete-window))
+   ;; terminal already visible → jump to it
+   ((when-let ((win (seq-find (lambda (w)
+                                (with-current-buffer (window-buffer w)
+                                  (derived-mode-p 'ghostel-mode)))
+                              (window-list))))
+      (select-window win)))
+   ;; otherwise → split right and open ghostel there
+   (t
+    (select-window (split-window-right))
+    (let ((display-buffer-overriding-action '(display-buffer-same-window)))
+      (ghostel)))))
+
+(map! :nvi "M-q" #'my/ghostel-right)
