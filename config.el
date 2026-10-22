@@ -155,3 +155,6 @@
       "u" #'pico-upload
       "s" #'pico-stop)
 (set-file-template! 'python-mode :ignore t)
+(after! lsp-mode
+  (setq lsp-signature-render-documentation nil
+        lsp-eldoc-enable-hover nil))
