@@ -125,3 +125,33 @@
       (ghostel)))))
 
 (map! :nvi "M-q" #'my/ghostel-right)
+;; --- Raspberry Pi Pico (MicroPython via mpremote) ---
+
+(defun pico-run ()
+  "Run current file on the Pico, with the project folder mounted."
+  (interactive)
+  (save-buffer)
+  (compile (concat "mpremote mount . run "
+                   (shell-quote-argument (file-name-nondirectory buffer-file-name)))))
+
+(defun pico-upload ()
+  "Copy current file to the Pico's flash."
+  (interactive)
+  (save-buffer)
+  (let ((f (shell-quote-argument (file-name-nondirectory buffer-file-name))))
+    (shell-command (format "mpremote cp %s :%s" f f))))
+
+(defun pico-stop ()
+  "Stop mpremote and soft-reset the Pico."
+  (interactive)
+  (ignore-errors (kill-compilation))
+  (sleep-for 0.3)
+  (shell-command "mpremote soft-reset"))
+
+(map! :after python
+      :map (python-mode-map python-ts-mode-map)
+      :localleader
+      "r" #'pico-run
+      "u" #'pico-upload
+      "s" #'pico-stop)
+(set-file-template! 'python-mode :ignore t)
