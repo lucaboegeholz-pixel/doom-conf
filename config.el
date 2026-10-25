@@ -82,7 +82,8 @@
 ;; they are implemented.
 (setq cdlatex-math-modify-alist
       '((?B "\\mathbb" nil t nil nil)))
-(setq doom-theme 'doom-gruvbox)
+(setq ahungry-theme-font-settings nil)
+(setq doom-theme 'ahungry)
 (setq org-directory "~/notes/")
 (after! org
   (setq org-startup-with-latex-preview nil
@@ -158,3 +159,9 @@
 (after! lsp-mode
   (setq lsp-signature-render-documentation nil
         lsp-eldoc-enable-hover nil))
+(custom-set-faces!
+  '(org-level-1 :height 1.0)
+  '(org-level-2 :height 1.0)
+  '(org-level-3 :height 1.0)
+  '(org-level-4 :height 1.0)
+  '(org-document-title :height 1.0))
