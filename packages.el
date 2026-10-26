@@ -52,4 +52,4 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 (package! cdlatex)
-(package! ahungry-theme)
+(package! color-theme-modern)

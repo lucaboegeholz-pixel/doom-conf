@@ -82,8 +82,10 @@
 ;; they are implemented.
 (setq cdlatex-math-modify-alist
       '((?B "\\mathbb" nil t nil nil)))
-(setq ahungry-theme-font-settings nil)
-(setq doom-theme 'ahungry)
+;; Ordner mit den color-theme-modern-Themes für load-theme sichtbar machen
+(add-to-list 'custom-theme-load-path
+             (file-name-directory (locate-library "billw-theme")))
+(setq doom-theme 'billw)
 (setq org-directory "~/notes/")
 (after! org
   (setq org-startup-with-latex-preview nil
