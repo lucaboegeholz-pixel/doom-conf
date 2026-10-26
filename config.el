@@ -165,3 +165,10 @@
   '(org-level-3 :height 1.0)
   '(org-level-4 :height 1.0)
   '(org-document-title :height 1.0))
+
+(after! org
+  ;; pgfplots in LaTeX previews and PDF exports
+  (add-to-list 'org-latex-packages-alist '("" "pgfplots" t))
+  ;; the default renderer (dvipng) can't draw TikZ, ImageMagick can
+  (setq org-preview-latex-default-process 'dvisvgm))
+(pixel-scroll-precision-mode 1)
